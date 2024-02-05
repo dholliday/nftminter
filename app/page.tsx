@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Heading, Box, Text, Center } from "@chakra-ui/react";
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import MintForm from "@/components/MintForm";
 
 export default function Home() {
-  const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { connected } = useWallet();
 
   return (
     <main>
@@ -20,6 +19,7 @@ export default function Home() {
           </Text>
         </Center>
       </Box>
+      <Box pt="2em">{connected ? <MintForm /> : ""}</Box>
     </main>
   );
 }
